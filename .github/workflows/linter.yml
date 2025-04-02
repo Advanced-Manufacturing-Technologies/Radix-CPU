@@ -1,0 +1,23 @@
+name: Verilator Lint
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    name: Verilator Lint Check
+    runs-on: ubuntu-latest
+
+    container:
+      image: verilator/verilator
+      options: --entrypoint=sh
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run Verilator Lint
+        run: |
+          verilator --version
+          verilator --lint-only -Wall --timing --default-language 1800-2017 -Wno-fatal rtl/*.v > lint.log

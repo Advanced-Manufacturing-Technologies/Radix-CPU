@@ -9,3 +9,4 @@ localparam [3:0]
     ALU_SRA  = 4'b0111,
     ALU_OR   = 4'b1000,
     ALU_AND  = 4'b1001;
+    

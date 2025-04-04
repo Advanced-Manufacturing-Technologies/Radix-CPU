@@ -3,10 +3,10 @@ module regfile (
     input  wire         we,       // Write enable
     input  wire  [4:0]  waddr,    // Write register address
     input  wire [31:0]  wdata,    // Write data
-    input  wire  [4:0]  raddr1,   // Read address 1
-    input  wire  [4:0]  raddr2,   // Read address 2
-    output wire [31:0]  rdata1,   // Read data 1
-    output wire [31:0]  rdata2    // Read data 2
+    input  wire  [4:0]  rs1,      // Read address 1
+    input  wire  [4:0]  rs2,      // Read address 2
+    output wire [31:0]  rs1_val,  // Read data 1
+    output wire [31:0]  rs2_val   // Read data 2
 );
 
   reg [31:0] regs[31:0];
@@ -19,7 +19,7 @@ module regfile (
   end
 
   // Read (combinational)
-  assign rdata1 = (raddr1 == 0) ? 32'b0 : regs[raddr1];
-  assign rdata2 = (raddr2 == 0) ? 32'b0 : regs[raddr2];
+  assign rs1_val = (rs1 == 0) ? 32'b0 : regs[rs1];
+  assign rs2_val = (rs2 == 0) ? 32'b0 : regs[rs2];
 
 endmodule
